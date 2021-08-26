@@ -9,20 +9,19 @@ on:
 jobs:
   build:
 
-    runs-on: ubuntu-latest
-    
-
-    - name: kirim ke server ssh 
-      uses: appleboy/ssh-action@master
-      with: 
-        host: ${{ secrets.HOST }}
-        username: ${{ secret.USER  }}
-        port: 22
-        key: ${{ secret.PRIVATE_KEY }}
-        script: |
-          cd /var/www/html/release
-          git pull origin master
-          composer update 
+    runs-on: ubuntu-latest  
+      steps: 
+      - name: kirim ke server ssh 
+        uses: appleboy/ssh-action@master
+        with: 
+          host: ${{ secrets.HOST }}
+          username: ${{ secret.USER  }}
+          port: 22
+          key: ${{ secret.PRIVATE_KEY }}
+          script: |
+            cd /var/www/html/release
+            git pull origin master
+            composer update 
 
 
       
