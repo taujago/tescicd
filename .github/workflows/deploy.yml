@@ -17,7 +17,7 @@ jobs:
           user: ${{ secrets.USERNAME }}
           key: ${{ secrets.PRIVATE_KEY }}
           port: 22
-          script: |
+          command: |
             cd /var/www/html/release
             git pull origin master
             composer update 
