@@ -21,6 +21,7 @@ jobs:
             cd /var/www/html/release
             git pull origin master
             composer update 
+            
 
     
       
