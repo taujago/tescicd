@@ -11,17 +11,16 @@ jobs:
     runs-on: ubuntu-latest
     steps: 
       - name: Deploy ke server
-        uses: fifsky/ssh-action@master
+        uses: appleboy/ssh-action@v0.1.4
         with: 
-          command: |
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.PRIVATE_KEY }}
+          port: 22
+          script: |
             cd /var/www/html/release
             git pull origin master
             composer update 
-          host: ${{ secrets.HOST }}
-          user: ${{ secrets.USERNAME }}
-          key: ${{ secrets.PRIVATE_KEY }}
-          port: 22
-          
 
 
     
