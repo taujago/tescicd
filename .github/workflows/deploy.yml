@@ -13,10 +13,10 @@ jobs:
       - name: Deploy ke server
         uses: appleboy/ssh-action@v0.1.4
         with: 
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.USERNAME }}
-          # key: ${{ secrets.PRIVATE_KEY }}
-          password: Rahasia1q2w3e4r
+          host: 165.22.105.141
+          username: root
+          key: ${{ secrets.PRIVATE_KEY }}
+          # password: Rahasia1q2w3e4r
           port: 22
           script: |
             cd /var/www/html/release
