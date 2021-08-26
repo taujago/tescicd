@@ -8,20 +8,19 @@ on:
 
 jobs:
   build:
-
-    runs-on: ubuntu-latest  
-      steps: 
-      - name: kirim ke server ssh 
+    runs-on: ubuntu-latest
+    steps: 
+      - name: Deploy ke server
         uses: appleboy/ssh-action@master
         with: 
-          host: ${{ secrets.HOST }}
-          username: ${{ secret.USER  }}
-          port: 22
+          host: ${{ secret.HOST }}
+          username: ${{ secret.USERNAME }}
           key: ${{ secret.PRIVATE_KEY }}
+          port: 22
           script: |
             cd /var/www/html/release
             git pull origin master
-            composer update 
+            composer update
 
-
+    
       
