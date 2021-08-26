@@ -11,11 +11,11 @@ jobs:
     runs-on: ubuntu-latest
     steps: 
       - name: Deploy ke server
-        uses: appleboy/ssh-action@master
+        uses: fifsky/ssh-action@master
         with: 
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
-          password: Rahasia1q2w3e4r
+          key: ${{ secrets.PRIVATE_KEY }}
           port: 22
           script: |
             cd /var/www/html/release
