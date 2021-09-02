@@ -53,9 +53,9 @@ jobs:
             script: |
               cd /var/www/html/release              
               git pull
+              composer update -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
               cp .env.prod .env 
               php artisan key:generate
-              composer update -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
               php artisan migrate
               php artisan db:seed --class=MahasiswaSeeder
   
