@@ -60,7 +60,7 @@ jobs:
             cd /var/www/html/release
             git pull
             # composer update -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
-            php artisan migrate
+            # php artisan migrate
  
   deployToAWS:
     runs-on: ubuntu-latest 
