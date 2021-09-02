@@ -7,14 +7,15 @@ on:
     branches: [ main ]
 
 jobs:
-  test: 
-    steps:
-    - name: Teset unit 
-    - run: vendor/bin/phpunit
+   
     
+
   build:
     runs-on: ubuntu-latest
     steps: 
+      - name: Teset unit 
+        run: vendor/bin/phpunit
+
       - name: Deploy ke server
         uses: appleboy/ssh-action@v0.1.4
         with: 
