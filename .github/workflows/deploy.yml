@@ -27,7 +27,11 @@ jobs:
       
     - name: Copy files to the test website with the AWS CLI
       run: |
-        /home/cloudshell-user/bin/auto.sh $BUILD_NUMBER
+        AMI=`aws ec2 create-image --instance-id i-011db2ec73bf07376 --name "prodv $BUILD_NUMBER" --description "lateeset version of ami prod $BUILD_NUMBER" --output text`
+        NEW_LC="LCv $BUILD_NUMBER"
+        aws autoscaling create-launch-configuration  --launch-configuration-name ${NEW_LC} --image-id ${AMI} --instance-type a1.medium
+        aws autoscaling update-auto-scaling-group --auto-scaling-group-name ZontoolAutoSG --launch-configuration-name ${NEW_LC} 
+
 
 # AKIAYGVUCAHHW7EDJCMT
 
