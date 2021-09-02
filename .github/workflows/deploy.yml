@@ -61,6 +61,6 @@ jobs:
               php artisan db:seed --class=MahasiswaSeeder
   
 
-# AKIAYGVUCAHHW7EDJCMT  
+# AKIAYGVUCAHHW7EDJCMT    s
 
 # QpApHcxkkHE+ZD2H6CZvqTdy9rgGln9gnIzLhpnR
