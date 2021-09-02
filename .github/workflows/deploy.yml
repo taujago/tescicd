@@ -8,24 +8,21 @@ on:
 
 jobs:
    
-    
 
   build:
     runs-on: ubuntu-latest
     steps: 
-      - name: Teset unit 
-        run: ./vendor/bin/phpunit
-
+     
       - name: Deploy ke server
         uses: appleboy/ssh-action@v0.1.4
         with: 
           host: ${{ secrets.HOST }}
           username: root
           key: ${{ secrets.PRIVATE_KEY }}
-          # password: Rahasia1q2w3e4r
           port: 22
           script: |
             cd /var/www/html/release
             git pull
             composer  update --no-interaction
+            php artisan migrate
  
