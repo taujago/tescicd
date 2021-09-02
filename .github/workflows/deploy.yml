@@ -7,6 +7,11 @@ on:
     branches: [ main ]
 
 jobs:
+  test: 
+    steps:
+    - name: Teset unit 
+    - run: vendor/bin/phpunit
+    
   build:
     runs-on: ubuntu-latest
     steps: 
@@ -23,4 +28,3 @@ jobs:
             git pull
             composer  update --no-interaction
  
-# i love this idea.. faaakk.. it's cool 
