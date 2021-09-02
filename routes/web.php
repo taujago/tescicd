@@ -21,3 +21,8 @@ Route::get('/', function () {
 Route::get('/test',function(){
     return 'test view';
 });
+
+
+Route::get('/hello', function () {
+    return 'Helloo wordl.';
+});
