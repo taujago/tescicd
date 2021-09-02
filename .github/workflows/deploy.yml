@@ -24,11 +24,10 @@ jobs:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET }}
         aws-region: us-east-2
+      
+    - name: Copy files to the test website with the AWS CLI
       run: |
-      ./bin/auto.sh $BUILD_NUMBER
-    #- name: Copy files to the test website with the AWS CLI
-    #  run: |
-    #    ./bin/auto.sh $BUILD_NUMBER
+        /home/cloudshell-user/bin/auto.sh $BUILD_NUMBER
 
 # AKIAYGVUCAHHW7EDJCMT
 
