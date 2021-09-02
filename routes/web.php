@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\MahasiswaController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,3 +27,7 @@ Route::get('/test',function(){
 Route::get('/hello', function () {
     return 'Helloo wordl.';
 });
+
+
+Route::get('/mahasiswa/getdata',[ MahasiswaController::class, 'getData' ]);
+Route::get('/mahasiswa', [MahasiswaController::class, 'index']);
