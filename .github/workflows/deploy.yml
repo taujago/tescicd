@@ -36,6 +36,6 @@ jobs:
         aws autoscaling update-auto-scaling-group --auto-scaling-group-name ZontoolAutoSG --launch-configuration-name ${NEW_LC} 
 
 
-# AKIAYGVUCAHHW7EDJCMT
+# AKIAYGVUCAHHW7EDJCMT  
 
 # QpApHcxkkHE+ZD2H6CZvqTdy9rgGln9gnIzLhpnR
