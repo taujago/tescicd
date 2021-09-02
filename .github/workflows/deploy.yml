@@ -30,7 +30,7 @@ jobs:
         VERSION=$BUILD_NUMBER
         NAME="ZONTOOL${VERSION}ZONTOOL"
         echo "NAMA $NAME"
-        AMI=`aws ec2 create-image --instance-id i-011db2ec73bf07376 --name $NAME --description "lateeset version of ami prod ${VERSION}" --output text`
+        AMI=`aws ec2 create-image --instance-id i-011db2ec73bf07376 --name $NAME --description "lateeset version of ami prod " --output text`
         echo "ID AMI ${AMI}"
         NEW_LC="LCv ${VERSION}"
         aws autoscaling create-launch-configuration  --launch-configuration-name ${NEW_LC} --image-id ${AMI} --instance-type a1.medium
