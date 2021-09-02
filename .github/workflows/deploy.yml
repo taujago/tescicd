@@ -57,8 +57,8 @@ jobs:
               cp .env.prod .env 
               php artisan key:generate
               php artisan config:clear 
-              php artisan migrate
-              php artisan db:seed --class=MahasiswaSeeder
+              #php artisan migrate
+              #php artisan db:seed --class=MahasiswaSeeder
   
 
 # AKIAYGVUCAHHW7EDJCMT  
