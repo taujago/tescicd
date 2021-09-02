@@ -18,6 +18,7 @@ jobs:
           MYSQL_DATABASE: unittest
         ports: 
           - 3306:3306
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
     steps: 
       - uses: actions/checkout@v2
       - name: Copy the .env 
@@ -30,17 +31,17 @@ jobs:
         run: php artisan key:generate
       - name: clear cache
         run: php artisan config:clear 
-      - name: Do migration database 
-        run: php artisan migrate
-      - name: Do data seeder 
-        run: php artisan db:seed --class=MahasiswaSeeder
+      #- name: Do migration database 
+      #  run: php artisan migrate
+      #- name: Do data seeder 
+      #  run: php artisan db:seed --class=MahasiswaSeeder
       - name: Do unit test 
-        env: 
-          DB_CONNECTION: mysql
-          DB_PORT: 3306
-          DB_USER: root
-          DB_PASS: ""
-          DB_DATABASE: unittest
+        #env: 
+        #  DB_CONNECTION: mysql
+        #  DB_PORT: 3306
+        #  DB_USER: root
+        #  DB_PASS: ""
+        #  DB_DATABASE: unittest
         run: ./vendor/bin/phpunit
 
   build:
