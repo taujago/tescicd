@@ -59,7 +59,7 @@ jobs:
           script: |
             cd /var/www/html/release
             git pull
-            composer update -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
+            # composer update -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
             php artisan migrate
  
   deployToAWS:
