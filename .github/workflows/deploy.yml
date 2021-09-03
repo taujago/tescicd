@@ -56,7 +56,7 @@ jobs:
               git pull
               composer update -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
               else 
-              git clone https://taujago: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@github.com/taujago/tescicd.git .
+              git clone ${{ secrets.GIT_REPO }} .
               composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
               fi               
               cp .env.prod .env 
