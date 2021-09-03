@@ -1,10 +1,10 @@
-name: Install ke server
+name: Staging
 
 on:
   push:
-    branches: [ main ]
+    branches: [ staging ]
   pull_request:
-    branches: [ main ]
+    branches: [ staging ]
 
 jobs:
 
@@ -65,40 +65,3 @@ jobs:
               php artisan config:clear 
               php artisan migrate
               php artisan db:seed --class=MahasiswaSeeder
-
-  deployToAWS:
-    runs-on: ubuntu-latest 
-    needs: build
-    steps: 
-    - name: Generate build number
-      uses: einaregilsson/build-number@v3
-      with: 
-        token: ${{secrets.github_token}}  
-    - name: Coba lihat version nya 
-      run: echo "vesionnnya is $BUILD_NUMBER"
-    - name: COnfigure AWS Cred 
-      uses: aws-actions/configure-aws-credentials@v1
-      with:
-        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
-        aws-secret-access-key: ${{ secrets.AWS_SECRET }}
-        aws-region: us-east-2
-      
-    - name: Copy files to the test website with the AWS CLI
-      run: |
-        VERSION=$BUILD_NUMBER
-        NAME="ZONTOOL${VERSION}ZONTOOL"
-        echo "NAMA $NAME"
-        AMI=`aws ec2 create-image --instance-id i-011db2ec73bf07376 --name "$NAME" --no-reboot --output text`
-        echo "ID AMI ${AMI}"
-        echo "ami createed"
-        NEW_LC="LCv${VERSION}"
-        echo "create launch configuration"
-        aws autoscaling create-launch-configuration  --launch-configuration-name "${NEW_LC}" --image-id ${AMI} --instance-type a1.medium
-        echo "update autoscaling group"
-        aws autoscaling update-auto-scaling-group --auto-scaling-group-name ZontoolAutoSG --launch-configuration-name "${NEW_LC}" 
-        #aws ec2 describe-instances --query 'Reservations[*].Instances[*].[InstanceId]' --filters 'Name=group,Values=zontool' --output text | awk '{print $1}' | while read line; do aws ec2 terminate-instances --instance-ids $line; done
-
-
-# AKIAYGVUCAHHW7EDJCMT    s
-
-# QpApHcxkkHE+ZD2H6CZvqTdy9rgGln9gnIzLhpnR
