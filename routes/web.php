@@ -25,7 +25,7 @@ Route::get('/test',function(){
 
 
 Route::get('/hello', function () {
-    return 'Helloo wordl.';
+    return 'Helloo wordl. hell yeaahh...';
 });
 
 

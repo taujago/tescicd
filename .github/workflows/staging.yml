@@ -54,10 +54,10 @@ jobs:
             script: |
               cd /var/www/html/release              
               if [ -d /var/www/html/release/.git ]; then
-              git pull
+              git pull origin staging
               composer update -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
               else 
-              git clone ${{ secrets.GIT_REPO }} .
+              git clone -b staging ${{ secrets.GIT_REPO }} .
               composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
               fi               
               cp .env.prod .env 
