@@ -96,7 +96,7 @@ jobs:
         aws autoscaling create-launch-configuration  --launch-configuration-name "${NEW_LC}" --image-id ${AMI} --instance-type a1.medium
         echo "update autoscaling group"
         aws autoscaling update-auto-scaling-group --auto-scaling-group-name ZontoolAutoSG --launch-configuration-name "${NEW_LC}" 
-        #aws ec2 describe-instances --query 'Reservations[*].Instances[*].[InstanceId]' --filters 'Name=group,Values=zontool' --output text | awk '{print $1}' | while read line; do aws ec2 terminate-instances --instance-ids $line; done
+        aws ec2 describe-instances --query 'Reservations[*].Instances[*].[InstanceId]' --filters "Name=tag:group,Values=zontool" --output text | awk '{print $1}' | while read line; do aws ec2 terminate-instances --instance-ids $line; done
 
 
 # AKIAYGVUCAHHW7EDJCMT    s

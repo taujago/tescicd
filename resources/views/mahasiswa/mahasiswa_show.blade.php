@@ -1,16 +1,22 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Laravel 8|7 Datatables Tutorial</title>
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"/>
+@extends('app')
+
+
+@section('container')
+    
     <link href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css" rel="stylesheet">
     <link href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css" rel="stylesheet">
-</head>
-<body>
+ 
     
-<div class="container mt-5">
-    <h2 class="mb-4">Laravel 7|8 Yajra Datatables Example</h2>
+ 
+    <h2 class="mb-4">DATA MAHASISWA</h2>
+
+    <div class="row mb-3">
+        <div class="col-md-2">
+            <a class="btn btn-primary" href="{{ url("mahasiswa/tambah") }}"> Tambah baru 
+            </a>
+        </div>
+    </div>
+
     <table class="table table-bordered yajra-datatable">
         <thead>
             <tr>
@@ -24,14 +30,16 @@
         <tbody>
         </tbody>
     </table>
-</div>
+ 
    
 </body>
+@endsection
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>  
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
+
+@section('js')
+    
+
 <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
 
 <script type="text/javascript">
@@ -49,12 +57,37 @@
             {
                 data: 'action', 
                 name: 'action', 
-                orderable: true, 
-                searchable: true
+                orderable: false, 
+                searchable: false
             },
         ]
     });
     
   });
+
+
+function hapus(id){
+     
+
+    jawab =  confirm('apakah andayakin hapus ? ');
+
+    if(jawab) { 
+    $.ajax({
+        url : '{{ url('mahasiswa/hapus') }}',
+        type : 'post',
+        dataType : 'json',
+        data : {id : id, _token : '{{ csrf_token() }}'}, 
+        success : function(obj){
+            // swal.fire('Info',obj.message,'success');
+            alert('data berhasildihapus');
+            table.ajax.reload(false);
+        }
+
+    });
+    }
+
+}
+
 </script>
-</html>
+ 
+@endsection

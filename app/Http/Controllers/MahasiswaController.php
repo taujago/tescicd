@@ -12,6 +12,7 @@ class MahasiswaController extends Controller
 
 
     function index(){
+        // return view('app');
         return view('mahasiswa.mahasiswa_show');
     }
 
@@ -23,12 +24,33 @@ class MahasiswaController extends Controller
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function ($row) {
-                    $actionBtn = '<a href="javascript:void(0)" class="edit btn btn-success btn-sm">Edit</a> <a href="javascript:void(0)" class="delete btn btn-danger btn-sm">Delete</a>';
-                    return $actionBtn;
+                    return view ('mahasiswa.mahasiswa_action',$row);
                 })
                 ->rawColumns(['action'])
                 ->make(true);
         // }
+    }
+
+    function tambah(){
+        //return 'hello';
+        return view('mahasiswa.mahasiswa_tambah');
+    }
+
+    function simpan(Request $request){
+
+        Mahasiswa::create([
+            "nama" => $request->nama,
+            "alamat"=> $request->alamat,
+            "nim" => $request->nim
+        ]);
+
+        redirect('mahasiswa');
+
+    }
+
+    function hapus(Request $request){
+        Mahasiswa::destroy($request->id);
+        return ['error'=>false,'message'=>"Berhasil dihapus"];
     }
 
 }

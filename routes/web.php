@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\MahasiswaController;
+use App\Http\Controllers\SuratController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,3 +32,13 @@ Route::get('/hello', function () {
 
 Route::get('/mahasiswa/getdata',[ MahasiswaController::class, 'getData' ]);
 Route::get('/mahasiswa', [MahasiswaController::class, 'index']);
+Route::get('/mahasiswa/tambah', [MahasiswaController::class, 'tambah']);
+Route::post('/mahasiswa/simpan', [MahasiswaController::class, 'simpan']);
+Route::post('/mahasiswa/hapus', [MahasiswaController::class, 'hapus']);
+
+
+Route::get('/halo',function(){
+    return 'selamat datang';
+});
+
+Route::get('/surat',[ SuratController::class,'index'  ]);
